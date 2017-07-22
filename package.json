@@ -1,0 +1,24 @@
+{
+  "name": "task-engine",
+  "version": "1.0.0",
+  "description": "Promise-based, no frills task runner",
+  "bin": {
+    "taskengine": "./lib/cli.js"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": ["task", "runner", "tasks", "promise", "engine"],
+  "author": "Darren Schnare <schnare.d@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "mocha": "^3.4.2"
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}
