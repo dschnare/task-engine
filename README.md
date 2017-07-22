@@ -2,6 +2,10 @@
 
 Task Engine is a Promise-based, no frills task runner.
 
+## Install
+
+    npm install task-engine -D
+
 ## Quick Start
 
     // taskfile.js
