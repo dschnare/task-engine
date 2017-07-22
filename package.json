@@ -15,6 +15,13 @@
   "files": [
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dschnare/task-engine"
+  },
+  "bugs": {
+    "url": "https://github.com/dschnare/task-engine/issues"
+  },
   "devDependencies": {
     "mocha": "^3.4.2"
   },
