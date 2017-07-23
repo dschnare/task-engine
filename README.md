@@ -170,6 +170,9 @@ Attempts to run a task by name. If the task was added with dependencies then
 those dependent tasks are run first sequentially. Returns a promise that
 resolves to the result of the task.
 
+The options are passed down to each dependent task and the tas designated by
+`taskName`.
+
 Example:
 
     const tEngine = new TaskEngine()
@@ -184,6 +187,9 @@ Example:
 **TaskEngine#runTaskWithoutDependencies(taskName, options = {})**
 
 Attempts to run a task by name without running its dependent tasks.
+
+The options are passed down to each dependent task and the tas designated by
+`taskName`.
 
 Example:
 
