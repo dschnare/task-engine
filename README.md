@@ -50,12 +50,17 @@ Task Engine is a Promise-based, no frills task runner.
 
 Example:
 
-    taskengine myTask --minfy --folders one two --num 45 --folders lib
+    taskengine myTask --opts @./myModule \
+      --minfy \
+      --folders one two \
+      --num 45 \
+      --folders lib
 
 This example will run the task `myTask` and all of its dependent tasks passing
 the following options to each task:
 
     {
+      opts: ...default export from the ./myModule module...,
       minify: true,
       folders: [ 'one', 'two', 'lib' ],
       num: 45
@@ -98,19 +103,28 @@ A task is a function that has the following signature
 
     task (options, engine, results): any | Promise<any>
 
-Where `options` is the options passed to the task from the command line, or
-from a dependency list, `engine` is an instance of the TaskEngine and `results`
-is an array of results from each of this task's dependencies (if any).
+Where `options` is the options passed to the task. Options are ultimately merged
+from the parent tasks options which comes from the command line and any prior
+tasks that may have ran in a dependency chain. `engine` is an instance of the
+TaskEngine and `results` is an array of results from each of this task's
+dependencies (if any).
 
 Example:
 
     const tEngine = new TaskEngine()
     tEngine.addTask(
       function myTask () { },
-      [ { task: 'otherTask', options: { ...options.. } } ]
+      [ { task: 'otherTask', options: { arg2: 45 } } ]
     )
-    tEngine.addTask(() => { }, 'otherTask', [ 'otherTask2' ])
+    tEngine.addTask((options) => {
+      console.log(options)
+    }, 'otherTask', [ 'otherTask2' ])
     tEngine.addTask(function otherTask2 () {})
+    tEngine.runtask('myTask', { arg1: 'Hello World' })
+    // 'otherTask' will have these options passed down to it:
+    // { arg1: 'Hello World', arg2: 45 }
+    // 'otherTask2' will have these options passed down to it:
+    // { arg1: 'Hello World' }
 
 **TaskEngine#addTasksFromObject(object)**
 
