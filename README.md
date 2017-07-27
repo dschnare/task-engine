@@ -118,13 +118,13 @@ Example:
     )
     tEngine.addTask((options) => {
       console.log(options)
-    }, 'otherTask', [ 'otherTask2' ])
+    }, 'otherTask', [ { task: 'otherTask2', options: { tag: 'yes' } ])
     tEngine.addTask(function otherTask2 () {})
     tEngine.runtask('myTask', { arg1: 'Hello World' })
     // 'otherTask' will have these options passed down to it:
     // { arg1: 'Hello World', arg2: 45 }
     // 'otherTask2' will have these options passed down to it:
-    // { arg1: 'Hello World' }
+    // { arg1: 'Hello World', arg2: 45, tag: 'yes' }
 
 **TaskEngine#addTasksFromObject(object)**
 
